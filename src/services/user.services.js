@@ -1,5 +1,23 @@
 const {User, Product} = require('../../database/models');
 
+const register = async(body) => {
+    const user = await User.create({
+        username: body.username,
+        role: body.role,
+    });
+    return user;
+};
+
+
+const getRole = async(username) => {
+    const user = await User.findOne({
+        where: {
+            username,
+        }
+    });
+    return user.dataValues.role;
+};
+
 const addToCart = async(user, product) => {
     const {username} = user;
     const registeredUser = await User.findOne({where: {
@@ -49,4 +67,4 @@ const deleteCartProduct = async(username, id) => {
     );
 };
 
-module.exports = {addToCart, getCartProducts, deleteCartProduct};
+module.exports = {addToCart, getCartProducts, deleteCartProduct, getRole, register};

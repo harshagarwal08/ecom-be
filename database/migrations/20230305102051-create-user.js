@@ -13,8 +13,13 @@ module.exports = {
                 type: Sequelize.STRING,
                 unique: true,
             },
+            role: {
+                type: Sequelize.STRING,
+                defaultValue: 'user',
+            },
             cart: {
-                type: Sequelize.ARRAY(Sequelize.UUID)
+                type: Sequelize.ARRAY(Sequelize.UUID),
+                defaultValue: [],
             },
             createdAt: {
                 allowNull: false,

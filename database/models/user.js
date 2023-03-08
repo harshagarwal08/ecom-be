@@ -20,7 +20,14 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
         },
         username: DataTypes.STRING,
-        cart: DataTypes.ARRAY(DataTypes.UUID)
+        role: {
+            type: DataTypes.STRING,
+            defaultValue: 'user',
+        },
+        cart: {
+            type: DataTypes.ARRAY(DataTypes.UUID),
+            defaultValue: [],
+        },
     }, {
         sequelize,
         modelName: 'User',
